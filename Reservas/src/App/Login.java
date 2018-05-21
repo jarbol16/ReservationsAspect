@@ -11,8 +11,12 @@ import org.thanos.modelo.entities.User;
 import org.thanos.modelo.repository.UserRepository;
 
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JTextField;
 import java.awt.GridLayout;
+import java.awt.Toolkit;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JButton;
@@ -51,15 +55,18 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				 try {
 					_user = UserRepository.NewLogin(txt_user.getText(), txt_pass.getText());
-					Session.user = txt_user.getText();
-					Session.pass = txt_pass.getText();
-					Session.UserType = _user.Type;
-					if (_user.IsAdmin()) {
+					Session.user = _user;
+					if (_user.IsAdmin() || _user.IsStudent()) {
 						Home h = new Home();
+						Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+				        int x = (int) ((dimension.getWidth() - h.getWidth()) / 2);
+				        int y = (int) ((dimension.getHeight() - h.getHeight()) / 2);
+				        //_lo.setUndecorated(true);
+				        h.setLocation(x, y);
 						setVisible(false);
 						h.setVisible(true);
 					}
-				} catch (SQLException e1) {
+				} catch (Exception e1) {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}

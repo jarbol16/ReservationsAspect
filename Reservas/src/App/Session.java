@@ -1,7 +1,8 @@
 package App;
 
+import org.thanos.modelo.entities.User;
+
 public class Session {
-	public static String user;
-	public static String pass;
-	public static int UserType;
+	public static User user;
+	public static String FullName;
 }
