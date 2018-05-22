@@ -191,7 +191,7 @@ public class Panel_NewReservation extends JPanel {
 				re.user = new User();
 				re.user.Id = Session.user.Id;
 				try {
-					ReservationRespository.InsertUserReservation(re);
+					ReservationRespository.InsertUserReservation(Session.user.Username,re);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					//e.printStackTrace();

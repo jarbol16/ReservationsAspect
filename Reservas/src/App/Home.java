@@ -6,6 +6,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 
 import org.thanos.modelo.entities.Person;
 import org.thanos.modelo.entities.Student;
@@ -20,14 +21,18 @@ import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.JTable;
 
 public class Home extends JFrame {
 
 	private JPanel contentPane;
+	private JTable table;
 	/**
 	 * Create the frame.
 	 */
 	public Home() {
+		
+		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 740, 656);
 		contentPane = new JPanel();
@@ -113,22 +118,21 @@ public class Home extends JFrame {
 		panel_home.setLayout(gl_panel_home);
 		
 		
-		tabbedPane.addTab("Reservar", null, new Panel_NewReservation(), null);
-		
 		
 		if(Session.user.IsAdmin()) {
 			
 			
-			JPanel panel_rooms = new JPanel();
+			/*JPanel panel_rooms = new JPanel();
 			panel_rooms.setBackground(Color.WHITE);
 			tabbedPane.addTab("New tab", null, panel_rooms, null);
 			
 			JPanel panel_new_reservation = new JPanel();
 			panel_new_reservation.setBackground(Color.WHITE);
-			tabbedPane.addTab("New tab", null, panel_new_reservation, null);
+			tabbedPane.addTab("New tab", null, panel_new_reservation, null);*/
+			tabbedPane.addTab("Audit", null, new Panel_Audit(), null);
 		}else if(Session.user.IsStudent()) {
 			
-			
+			tabbedPane.addTab("Reservar", null, new Panel_NewReservation(), null);
 		}
 		contentPane.setLayout(gl_contentPane);
 	}

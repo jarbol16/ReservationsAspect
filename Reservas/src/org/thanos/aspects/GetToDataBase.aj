@@ -8,6 +8,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.Before;
 import org.thanos.connection.Conexion;
+import org.thanos.modelo.entities.AuditLog;
 import org.thanos.modelo.repository.ModelRepository;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
@@ -16,13 +17,24 @@ public aspect GetToDataBase {
     @After("execution(* org.thanos.modelo.repository.*.*(..))")
     public void GetToDataBAse(JoinPoint joinPoint)
     {
-        System.out.println("Consulta a la base de datos desde " + joinPoint.getSignature().getName()+ "   "+ joinPoint.getArgs()[0]);
+        try {
+        	 System.out.println("Consulta a la base de datos desde " + joinPoint.getSignature().getName()+ "   " + joinPoint.getArgs()[0]);
+        }catch (Exception e) {
+        	System.out.println("Consulta a la base de datos desde " + joinPoint.getSignature().getName()+ "   " );
+		}
     }
     
     @After("execution(* org.thanos.rooms.RoomRepository.*(..))")
     public void GetToDataBAseComponetnRoom(JoinPoint joinPoint)
     {
         System.out.println("Consulta a a la base de datos de Salones de clase, desde" + joinPoint.getSignature().getName()+ "   ");
+        AuditLog a = new AuditLog();
+        a.User = "SYSTEM";
+        a.Descrition = "LECTURA AL SISTEMA DE SALONES desde " +joinPoint.getSignature().getName();
+		/*
+		try {
+			ModelRepository.InsertAudit(a);
+		} catch (SQLException e) {}*/
     }
     
     @Before("call(* org.thanos.modelo.repository.UserRepository.NewLogin(..))")
@@ -43,6 +55,12 @@ public aspect GetToDataBase {
 				cn.executeUpdate(q);
 				ModelRepository.CreateTables();
 				System.out.println("SE CREARON LAS TABLAS");
+				 AuditLog a = new AuditLog();
+		         a.User = "SYSTEM";
+		         a.Descrition = "NUEVA INSTANCIA DE LA APLICACION";
+				
+				ModelRepository.InsertAudit(a);
+			
 			} catch (SQLException e1) {
 			}
 		}

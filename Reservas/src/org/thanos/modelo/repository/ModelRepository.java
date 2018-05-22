@@ -1,11 +1,13 @@
 package org.thanos.modelo.repository;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import org.thanos.connection.Conexion;
+import org.thanos.modelo.entities.AuditLog;
+import org.thanos.rooms.Block;
 
 public class ModelRepository {
 	public static ArrayList<String> SQL = new ArrayList<>();
@@ -127,5 +129,31 @@ public class ModelRepository {
         	cn.executeUpdate(SQL.get(i));
         }
 		
+	}
+
+	public static void InsertAudit(AuditLog audit) throws SQLException{
+		Connection conn = Conexion.getConexion();
+        String query =  "INSERT INTO audit SET `user` = '"+audit.User+"',description='"+audit.Descrition+"',datetime=UTC_TIMESTAMP();";
+        Statement cn = conn.createStatement();
+        cn.executeUpdate(query);
+	}
+	
+	public static ArrayList<AuditLog> RetrieveLogAudit() throws SQLException{
+		ArrayList<AuditLog> list = new ArrayList<>();
+		AuditLog adit;
+		Connection conn = Conexion.getConexion();
+        String query =  "SELECT * FROM audit";
+        Statement cn = conn.createStatement();
+        ResultSet response = cn.executeQuery(query);
+        while(response.next()) {
+        	adit = new AuditLog();
+        	adit.Id = response.getInt("id");
+        	adit.Descrition = response.getString("description");
+        	adit.User = response.getString("user");
+        	adit.DataTime = response.getString("datetime");
+        	list.add(adit);
+        }
+        conn.close();
+		return list;
 	}
 }
