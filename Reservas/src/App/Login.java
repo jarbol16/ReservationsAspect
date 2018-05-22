@@ -23,6 +23,9 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Font;
 
 public class Login extends JFrame {
 
@@ -37,7 +40,7 @@ public class Login extends JFrame {
 	public Login() {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 517, 252);
+		setBounds(100, 100, 381, 252);
 		contentPane = new JPanel();
 		contentPane.setBackground(Color.WHITE);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -74,32 +77,40 @@ public class Login extends JFrame {
 		});
 		btn_loggin.setBorder(null);
 		btn_loggin.setBackground(new Color(0, 153, 153));
+		
+		JPanel panel = new JPanel();
+		panel.setBackground(new Color(51, 153, 153));
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPane.createSequentialGroup()
 					.addGroup(gl_contentPane.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(157)
+							.addGap(90)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(btn_loggin, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(txt_pass, Alignment.LEADING)
 								.addComponent(txt_user, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)))
-						.addGroup(gl_contentPane.createSequentialGroup()
-							.addGap(173)
-							.addComponent(btn_loggin, GroupLayout.PREFERRED_SIZE, 129, GroupLayout.PREFERRED_SIZE)))
-					.addContainerGap(170, Short.MAX_VALUE))
+						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 361, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 		);
 		gl_contentPane.setVerticalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_contentPane.createSequentialGroup()
-					.addGap(42)
+				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addPreferredGap(ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
 					.addComponent(txt_user, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(txt_pass, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
 					.addGap(18)
 					.addComponent(btn_loggin, GroupLayout.PREFERRED_SIZE, 31, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(44, Short.MAX_VALUE))
+					.addGap(25))
 		);
+		
+		JLabel lblSistemaDeReservas = new JLabel("SISTEMA DE RESERVAS");
+		lblSistemaDeReservas.setForeground(Color.WHITE);
+		lblSistemaDeReservas.setFont(new Font("Tahoma", Font.BOLD, 18));
+		panel.add(lblSistemaDeReservas);
 		contentPane.setLayout(gl_contentPane);
 	}
 }

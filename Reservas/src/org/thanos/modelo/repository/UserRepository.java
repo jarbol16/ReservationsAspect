@@ -20,6 +20,10 @@ public class UserRepository {
 	            _user.Permissions = response.getString("permissions");
 	            _user.Type = response.getInt("user_type_id");
 	            _user.PersonId = response.getInt("person_id");
+	            _user.Id = response.getLong("id");
+	            _user.Username = user;
+	            _user.Pass = pass;
+	            		
 	        }
 	        conn.close();
 	        return _user;

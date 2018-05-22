@@ -3,7 +3,9 @@ package org.thanos.modelo.entities;
 
 
 public class User {
- 	private String username;
+	public long Id;
+ 	public String Username;
+ 	public String Pass;
     private boolean autorizado;
     public  boolean Activo;
     public String Permissions;
