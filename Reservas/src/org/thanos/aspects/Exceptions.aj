@@ -1,5 +1,7 @@
 package org.thanos.aspects;
 
+import java.sql.SQLException;
+
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterThrowing;
 
@@ -23,5 +25,7 @@ public aspect Exceptions {
 	 	public void afterThrowingDBLog(JoinPoint joinPoint) {
 	        System.out.println("AfterThrowing: Excepcion en conexion al servidor: "
                     +joinPoint.getSignature().getName());
+	        
 	 	}
+	 	
 }

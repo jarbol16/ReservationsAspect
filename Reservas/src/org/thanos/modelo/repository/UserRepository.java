@@ -10,7 +10,7 @@ import org.thanos.modelo.entities.User;
 
 public class UserRepository {
 
-	 public static User NewLogin(String user,String pass)throws Exception {
+	 public static User NewLogin(String user,String pass)throws SQLException {
 	        User _user = new User();
 	        Connection conn = Conexion.getConexion();
 	        String query =  "SELECT * FROM user u WHERE u.`user` = '"+user+"' and u.password = '"+pass+"'";

@@ -21,7 +21,7 @@ public class ReservationRespository {
 	public static long InsertUserReservation(UserReservation res) throws SQLException {
 		long resId = InsertReservation(res.reservation);
 		Connection conn = Conexion.getConexion();
-        String query =  "INSERT INTO user_reservation u ON u.user_id = "+res.user.Id+",u.classroom_id="+res.room.Id+",u.reservation_id="+resId+";";
+        String query =  "INSERT INTO user_reservation ON user_id = "+res.user.Id+",classroom_id="+res.room.Id+",reservation_id="+resId+";";
         Statement cn = conn.createStatement();
         long id = cn.executeUpdate(query);
 		return id;

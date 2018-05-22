@@ -119,7 +119,6 @@ public class Panel_NewReservation extends JPanel {
             @Override
             public void actionPerformed(ActionEvent e) {
             	 String room_str = (String)cbx_rooms.getSelectedItem();
-            	 System.out.println(room_str);
 	                for (int i=0;i<rooms.size();i++) {
 	                	if(rooms.get(i).Name.equals(room_str)) {
 	                		lbl_num.setText(""+rooms.get(i).NumChairs);
