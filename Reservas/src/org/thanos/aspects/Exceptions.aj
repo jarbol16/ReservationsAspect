@@ -17,4 +17,12 @@ public aspect Exceptions {
 	        System.out.println("Excepcion: "+ex.getMessage());
 	        
 	    }
+	 	@AfterThrowing(
+	 			pointcut = "execution(* org.thanos.connection.*.*(..))"
+	 	)
+	 	public void afterThrowingDBLog(JoinPoint joinPoint) {
+	        System.out.println("AfterThrowing: Excepcion en conexion al servidor: "
+                    +joinPoint.getSignature().getName()
+                    +",  Clase: "+joinPoint.getTarget().getClass().getName());
+	 	}
 }

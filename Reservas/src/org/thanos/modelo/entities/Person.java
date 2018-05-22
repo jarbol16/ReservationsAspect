@@ -6,5 +6,4 @@ public class Person {
 	public String Email;
 	public String Phone;
 	
-	
 }
