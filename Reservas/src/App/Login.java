@@ -26,13 +26,15 @@ import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Font;
+import javax.swing.JFormattedTextField;
+import javax.swing.JPasswordField;
 
 public class Login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textField;
 	private JTextField txt_user;
-	private JTextField txt_pass;
+	private JPasswordField txt_pass;
 
 	/**
 	 * Create the frame.
@@ -49,12 +51,10 @@ public class Login extends JFrame {
 		txt_user = new JTextField();
 		txt_user.setColumns(10);
 		
-		txt_pass = new JTextField();
-		txt_pass.setColumns(10);
-		
 		JButton btn_loggin = new JButton("Ingresar");
 		btn_loggin.addActionListener(new ActionListener() {
 			private User _user;
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				 try {
 					_user = UserRepository.NewLogin(txt_user.getText(), txt_pass.getText());
@@ -80,6 +80,8 @@ public class Login extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(51, 153, 153));
+		
+		txt_pass = new JPasswordField();
 		GroupLayout gl_contentPane = new GroupLayout(contentPane);
 		gl_contentPane.setHorizontalGroup(
 			gl_contentPane.createParallelGroup(Alignment.LEADING)
@@ -89,14 +91,14 @@ public class Login extends JFrame {
 							.addGap(90)
 							.addGroup(gl_contentPane.createParallelGroup(Alignment.TRAILING, false)
 								.addComponent(btn_loggin, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(txt_pass, Alignment.LEADING)
-								.addComponent(txt_user, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)))
+								.addComponent(txt_user, Alignment.LEADING, GroupLayout.PREFERRED_SIZE, 174, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txt_pass, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 73, Short.MAX_VALUE)))
 						.addComponent(panel, GroupLayout.PREFERRED_SIZE, 361, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+					.addContainerGap())
 		);
 		gl_contentPane.setVerticalGroup(
-			gl_contentPane.createParallelGroup(Alignment.LEADING)
-				.addGroup(Alignment.TRAILING, gl_contentPane.createSequentialGroup()
+			gl_contentPane.createParallelGroup(Alignment.TRAILING)
+				.addGroup(gl_contentPane.createSequentialGroup()
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 					.addPreferredGap(ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
 					.addComponent(txt_user, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
