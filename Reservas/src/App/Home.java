@@ -10,7 +10,10 @@ import javax.swing.table.DefaultTableModel;
 
 import org.thanos.modelo.entities.Person;
 import org.thanos.modelo.entities.Student;
+import org.thanos.modelo.repository.ModelRepository;
 import org.thanos.modelo.repository.PersonRepository;
+import org.thanos.reservations.ReservationRespository;
+import org.thanos.reservations.UserReservation;
 
 import java.awt.FlowLayout;
 import javax.swing.GroupLayout;
@@ -20,6 +23,9 @@ import javax.swing.JToolBar;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTable;
 
@@ -27,11 +33,44 @@ public class Home extends JFrame {
 
 	private JPanel contentPane;
 	private JTable table;
+	private JTable table_reservations;
 	/**
 	 * Create the frame.
 	 */
 	public Home() {
 		
+		
+		DefaultTableModel modelo = new DefaultTableModel();
+		String[] cl = {"Usuario","Codigo","Email","Fecha","Observacion","Salon","Bloque"};
+		modelo.addColumn("Usuario");
+		modelo.addColumn("Codigo");
+		modelo.addColumn("Email");
+		modelo.addColumn("Fecha");
+		modelo.addColumn("Observacion");
+		modelo.addColumn("Salon");
+		modelo.addColumn("Bloque");
+		modelo.addRow(cl);
+		try {
+			ArrayList<UserReservation> list = ReservationRespository.RetrieveReservations(Session.user.Username, Session.user.Type);
+			String[] row = new String[7];
+			for (int i=0;i<list.size();i++) {
+				row[0] = ""+ list.get(i).person.Name;
+				row[1] = list.get(i).person.LastName;
+				row[2] = list.get(i).person.Email;
+				row[3] = list.get(i).reservation.DateInit;
+				row[4] = list.get(i).reservation.Observation;
+				row[5] = list.get(i).room.Name;
+				row[6] = list.get(i).room.BlockRoom.Description;
+				modelo.addRow(row);
+			}
+			
+			
+		}catch (SQLException ex) {
+			System.out.println(ex.getMessage());
+			// TODO: handle exception
+		}
+		
+		table_reservations = new JTable(modelo);
 		
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 740, 656);
@@ -60,17 +99,29 @@ public class Home extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(new Color(0, 153, 153));
+		
+		JPanel panel_1 = new JPanel();
 		GroupLayout gl_panel_home = new GroupLayout(panel_home);
 		gl_panel_home.setHorizontalGroup(
 			gl_panel_home.createParallelGroup(Alignment.LEADING)
 				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
+				.addGroup(gl_panel_home.createSequentialGroup()
+					.addGap(10)
+					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
+					.addContainerGap())
 		);
 		gl_panel_home.setVerticalGroup(
 			gl_panel_home.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_home.createSequentialGroup()
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addContainerGap(499, Short.MAX_VALUE))
+					.addGap(68)
+					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 397, GroupLayout.PREFERRED_SIZE)
+					.addContainerGap(34, Short.MAX_VALUE))
 		);
+		panel_1.setLayout(new BorderLayout(0, 0));
+		
+		
+		panel_1.add(table_reservations, BorderLayout.CENTER);
 		
 		JLabel lblBienvenido = new JLabel("Bienvenido");
 		lblBienvenido.setFont(new Font("Tahoma", Font.BOLD, 20));

@@ -58,6 +58,7 @@ public class Panel_Audit extends JPanel {
 		panel_1.setBackground(new Color(51, 153, 153));
 		
 		JPanel panel_2 = new JPanel();
+		panel_2.setAutoscrolls(true);
 		panel_2.setBackground(Color.WHITE);
 		GroupLayout gl_panel_audit = new GroupLayout(this);
 		gl_panel_audit.setHorizontalGroup(
