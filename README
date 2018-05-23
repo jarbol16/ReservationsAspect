@@ -1,6 +1,8 @@
 PROYECTO DE RESERVAS PARA DESARROLLO DE SOFTWARE BASADO EN COMPONENTES USANDO
 ASPECTJ
 -----------------------------------------------------------------------------
+ENTORNO DE DESARROLLO: Eclipse
+-----------------------------------------------------------------------------
 Si las librerias de mysql-connector y aspectJ no funcion por (cambio de PATH)
 adjunto ambos .jar para actaulizarlos en los BUILD PATH
 -----------------------------------------------------------------------------
