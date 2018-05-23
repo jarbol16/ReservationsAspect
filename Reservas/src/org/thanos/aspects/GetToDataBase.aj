@@ -10,7 +10,7 @@ import org.aspectj.lang.annotation.Before;
 import org.thanos.connection.Conexion;
 import org.thanos.modelo.entities.AuditLog;
 import org.thanos.modelo.repository.ModelRepository;
-
+import org.thanos.server.config.*;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 public aspect GetToDataBase {
@@ -45,10 +45,10 @@ public aspect GetToDataBase {
     	}catch (Exception e) {
     		 System.out.println("BASE DE DATOS NO EXISTE ... Creando ...");
     		 MysqlDataSource ds = new MysqlDataSource();
-	         ds.setServerName("127.0.0.1");
-	         ds.setPortNumber(3306);
-    	     ds.setUser("jarboleda");//cambiar por root
-    	     ds.setPassword("juan123");//borrar
+	         ds.setServerName(Settings.DB_Local.SERVIDOR);
+	         ds.setPortNumber(Settings.DB_Local.PUERTO);
+    	     ds.setUser(Settings.DB_Local.NOMBRE_USUARIO);//cambiar por root
+    	     ds.setPassword(Settings.DB_Local.CONTRASENA_USUARIO);//borrar
     	     String q = "CREATE DATABASE IF NOT EXISTS `thanos_reservations`;";
     	     Connection ccn;
 			try {

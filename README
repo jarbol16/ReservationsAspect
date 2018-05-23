@@ -1,0 +1,16 @@
+PROYECTO DE RESERVAS PARA DESARROLLO DE SOFTWARE BASADO EN COMPONENTES USANDO
+ASPECTJ
+-----------------------------------------------------------------------------
+Si las librerias de mysql-connector y aspectJ no funcion por (cambio de PATH)
+adjunto ambos .jar para actaulizarlos en los BUILD PATH
+-----------------------------------------------------------------------------
+Por defecto el servidor de base de datos esta en "localhost" con el usuario
+root y sin contraseña.
+Para modificar estas configuraciones debe abrir el paquete "org.thanos.server.config"
+en la clase "Setting.java"
+-------------------------------------------------------------------------------
+EJECUCIÓN
+El main del proyecto es la clase Run.java en el paquete "App"
+---------------------------------------------------------------------------------
+La información que sale en el log del proyecto es realizada por ASPECTJ, al igual que
+la Auditoria del sistema, la captura de excepciones y el monitoreo a la base de datos

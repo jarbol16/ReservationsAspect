@@ -115,13 +115,15 @@ public class ModelRepository {
 
 		SQL.add("INSERT INTO `person` (`id`, `name`, `last_name`, `code`, `email`, `phone`) VALUES (1, 'Juan', 'Admin', '', 'jarbol18@gmail.com', NULL);");
 		SQL.add("INSERT INTO `person` (`id`, `name`, `last_name`, `code`, `email`, `phone`) VALUES (2, 'Juan', 'Martin', '215441545475', 'ju@gmail.com', NULL);");
-
+		SQL.add("INSERT INTO `person` (`id`, `name`, `last_name`, `code`, `email`, `phone`) VALUES (3, 'Pedro', 'Arboleda', '315441545475', 'pedro@gmail.com', NULL);");
+		
 		SQL.add("INSERT INTO `user_type` (`id`, `description`, `defaul_permission`) VALUES (1, 'Admin', 'YYYYY');");
 		SQL.add("INSERT INTO `user_type` (`id`, `description`, `defaul_permission`) VALUES (2, 'Student', 'YYYNN');");
 		SQL.add("INSERT INTO `user_type` (`id`, `description`, `defaul_permission`) VALUES (3, 'Teacher', 'YYYYN');");
 
 		SQL.add("INSERT INTO `user` (`id`, `user`, `password`, `permissions`, `user_type_id`, `person_id`) VALUES (1, 'admin', 'admin', 'YYYY', 1, 1);");
 		SQL.add("INSERT INTO `user` (`id`, `user`, `password`, `permissions`, `user_type_id`, `person_id`) VALUES (2, 'student', 'student', 'YYNN', 2, 2);");
+		SQL.add("INSERT INTO `user` (`id`, `user`, `password`, `permissions`, `user_type_id`, `person_id`) VALUES (3, 'pedro', 'pedro', 'YYNN', 2, 3);");
 		
 		Connection conn = Conexion.getConexion();
         Statement cn = conn.createStatement();
