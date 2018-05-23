@@ -14,3 +14,14 @@ El main del proyecto es la clase Run.java en el paquete "App"
 ---------------------------------------------------------------------------------
 La información que sale en el log del proyecto es realizada por ASPECTJ, al igual que
 la Auditoria del sistema, la captura de excepciones y el monitoreo a la base de datos
+---------------------------------------------------------------------------------
+USUARIOS de prueba
+Admin
+user: admin
+pass: admin
+
+Estudiantes:
+user: student
+pass: student
+user: pedro
+pass: pedro
