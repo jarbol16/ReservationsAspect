@@ -101,20 +101,30 @@ public class Home extends JFrame {
 		panel.setBackground(new Color(0, 153, 153));
 		
 		JPanel panel_1 = new JPanel();
+		
+		JLabel lblReservasPendientes = new JLabel("Reservas Pendientes");
+		lblReservasPendientes.setForeground(new Color(0, 51, 102));
+		lblReservasPendientes.setFont(new Font("Tahoma", Font.BOLD, 18));
 		GroupLayout gl_panel_home = new GroupLayout(panel_home);
 		gl_panel_home.setHorizontalGroup(
 			gl_panel_home.createParallelGroup(Alignment.LEADING)
 				.addComponent(panel, GroupLayout.DEFAULT_SIZE, 709, Short.MAX_VALUE)
 				.addGroup(gl_panel_home.createSequentialGroup()
 					.addGap(10)
-					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 692, Short.MAX_VALUE)
+					.addComponent(panel_1, GroupLayout.DEFAULT_SIZE, 689, Short.MAX_VALUE)
 					.addContainerGap())
+				.addGroup(gl_panel_home.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblReservasPendientes)
+					.addContainerGap(653, Short.MAX_VALUE))
 		);
 		gl_panel_home.setVerticalGroup(
 			gl_panel_home.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_home.createSequentialGroup()
 					.addComponent(panel, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-					.addGap(68)
+					.addGap(36)
+					.addComponent(lblReservasPendientes)
+					.addGap(18)
 					.addComponent(panel_1, GroupLayout.PREFERRED_SIZE, 397, GroupLayout.PREFERRED_SIZE)
 					.addContainerGap(34, Short.MAX_VALUE))
 		);
