@@ -21,13 +21,19 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.JTabbedPane;
 import javax.swing.JToolBar;
 import java.awt.Color;
+import java.awt.Dimension;
+
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTable;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Home extends JFrame {
 
@@ -101,8 +107,11 @@ public class Home extends JFrame {
 		panel.setBackground(new Color(0, 153, 153));
 		
 		JPanel panel_1 = new JPanel();
+		String ms = "Mis reservas";
+		if (Session.user.Type == 1)
+			ms = "Reservas Pendientes";
 		
-		JLabel lblReservasPendientes = new JLabel("Reservas Pendientes");
+		JLabel lblReservasPendientes = new JLabel(ms);
 		lblReservasPendientes.setForeground(new Color(0, 51, 102));
 		lblReservasPendientes.setFont(new Font("Tahoma", Font.BOLD, 18));
 		GroupLayout gl_panel_home = new GroupLayout(panel_home);
@@ -156,6 +165,23 @@ public class Home extends JFrame {
 		
 		lbl_name.setForeground(Color.WHITE);
 		lbl_name.setFont(new Font("Tahoma", Font.PLAIN, 18));
+		
+		JButton btnSalir = new JButton("Salir");
+		btnSalir.setForeground(Color.WHITE);
+		btnSalir.setBackground(new Color(0, 51, 102));
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				setVisible(false);
+				
+				Login _lo = new Login();
+				Dimension dimension = Toolkit.getDefaultToolkit().getScreenSize();
+		        int x = (int) ((dimension.getWidth() - _lo.getWidth()) / 2);
+		        int y = (int) ((dimension.getHeight() - _lo.getHeight()) / 2);
+		        //_lo.setUndecorated(true);
+		        _lo.setLocation(x, y);
+				_lo.setVisible(true);
+			}
+		});
 		GroupLayout gl_panel = new GroupLayout(panel);
 		gl_panel.setHorizontalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -163,8 +189,11 @@ public class Home extends JFrame {
 					.addGap(18)
 					.addGroup(gl_panel.createParallelGroup(Alignment.LEADING)
 						.addComponent(lblBienvenido)
-						.addComponent(lbl_name))
-					.addContainerGap(713, Short.MAX_VALUE))
+						.addGroup(gl_panel.createSequentialGroup()
+							.addComponent(lbl_name)
+							.addPreferredGap(ComponentPlacement.RELATED, 489, Short.MAX_VALUE)
+							.addComponent(btnSalir)))
+					.addContainerGap())
 		);
 		gl_panel.setVerticalGroup(
 			gl_panel.createParallelGroup(Alignment.LEADING)
@@ -172,7 +201,9 @@ public class Home extends JFrame {
 					.addContainerGap()
 					.addComponent(lblBienvenido)
 					.addPreferredGap(ComponentPlacement.RELATED)
-					.addComponent(lbl_name)
+					.addGroup(gl_panel.createParallelGroup(Alignment.BASELINE)
+						.addComponent(lbl_name)
+						.addComponent(btnSalir))
 					.addContainerGap(16, Short.MAX_VALUE))
 		);
 		panel.setLayout(gl_panel);
