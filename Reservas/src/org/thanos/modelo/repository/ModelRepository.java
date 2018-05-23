@@ -128,7 +128,7 @@ public class ModelRepository {
         for(int i=0;i<SQL.size();i++) {
         	cn.executeUpdate(SQL.get(i));
         }
-		
+		conn.close();
 	}
 
 	public static void InsertAudit(AuditLog audit) throws SQLException{

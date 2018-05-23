@@ -17,7 +17,7 @@ public class ReservationRespository {
 
 	public static long InsertReservation(String user,Reservation res) throws SQLException {
 		Connection conn = Conexion.getConexion();
-        String query =  "INSERT into reservation  SET id=1,date_init=UTC_TIMESTAMP(),date_end=UTC_TIMESTAMP(),observations='"+res.Observation+"'";
+        String query =  "INSERT into reservation  SET date_init=UTC_TIMESTAMP(),date_end=UTC_TIMESTAMP(),observations='"+res.Observation+"'";
         Statement cn = conn.createStatement();
         long id = cn.executeUpdate(query);
 		return id;

@@ -43,16 +43,19 @@ public aspect GetToDataBase {
     	try {
     		conn = Conexion.getConexion();
     	}catch (Exception e) {
+    		 System.out.println("BASE DE DATOS NO EXISTE ... Creando ...");
     		 MysqlDataSource ds = new MysqlDataSource();
 	         ds.setServerName("127.0.0.1");
 	         ds.setPortNumber(3306);
-    	     ds.setUser("root");
+    	     ds.setUser("jarboleda");//cambiar por root
+    	     ds.setPassword("juan123");//borrar
     	     String q = "CREATE DATABASE IF NOT EXISTS `thanos_reservations`;";
     	     Connection ccn;
 			try {
 				ccn = ds.getConnection();
 				Statement cn = ccn.createStatement();
 				cn.executeUpdate(q);
+				ccn.close();
 				ModelRepository.CreateTables();
 				System.out.println("SE CREARON LAS TABLAS");
 				 AuditLog a = new AuditLog();
